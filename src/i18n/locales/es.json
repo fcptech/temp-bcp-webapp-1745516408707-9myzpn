@@ -1,0 +1,306 @@
+{
+  "common": {
+    "welcome": "Bienvenido de nuevo",
+    "signIn": "Iniciar sesión",
+    "signOut": "Cerrar sesión",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "loading": "Cargando...",
+    "error": {
+      "invalidCredentials": "Correo o contraseña inválidos"
+    },
+    "saveChanges": "Guardar Cambios",
+    "noData": "No hay información para mostrar",
+    "close": "Cerrar",
+    "send": "Enviar",
+    "deleteAccount": "Eliminar cuenta",
+    "selectAccount": "Seleccionar cuenta",
+    "back": "Volver",
+    "approve": "Aprobar"
+  },
+  "auth": {
+    "resetPassword": {
+      "link": "Restablecer contraseña",
+      "request": "Restablecer tu contraseña",
+      "requestSubmit": "Enviar instrucciones",
+      "title": "Crear nueva contraseña",
+      "newPassword": "Nueva contraseña",
+      "confirmPassword": "Confirmar contraseña",
+      "submit": "Restablecer contraseña",
+      "validating": "Validando enlace...",
+      "invalidToken": "Enlace inválido",
+      "invalidTokenMessage": "Este enlace de restablecimiento de contraseña es inválido o ha expirado. Por favor solicita uno nuevo.",
+      "requestNew": "Solicitar nuevo enlace",
+      "success": "Contraseña restablecida",
+      "successMessage": "Tu contraseña ha sido restablecida. Ahora puedes iniciar sesión con tu nueva contraseña.",
+      "error": {
+        "invalidEmail": "Correo electrónico inválido",
+        "invalidToken": "Enlace inválido o expirado",
+        "passwordMismatch": "Las contraseñas no coinciden",
+        "passwordRequirements": "La contraseña debe tener al menos 12 caracteres e incluir mayúsculas, minúsculas, números y caracteres especiales",
+        "captchaRequired": "Por favor completa la verificación captcha"
+      }
+    }
+  },
+  "nav": {
+    "home": "INICIO",
+    "investments": "INVERSIONES",
+    "insurance": "SEGUROS",
+    "faq": "FAQ",
+    "legal": "LEGALES"
+  },
+  "withdrawalAccounts": {
+    "title": "CUENTAS DE RETIRO",
+    "help": {
+      "title": "Cuentas de Retiro",
+      "bank": {
+        "title": "Cuenta Bancaria",
+        "description": "Retira fondos directamente a tu cuenta bancaria personal. Esta es la opción más común para recibir tus fondos. Puedes vincular cuentas de bancos principales como Santander, BBVA o Bank of America."
+      },
+      "financial": {
+        "title": "Cuenta de Inversión",
+        "description": "Transfiere fondos a otra institución financiera donde tengas una cuenta de inversión. Esta opción es ideal para mover fondos entre plataformas de inversión o corredores como Pershing LLC o Morgan Stanley."
+      },
+      "alias": {
+        "title": "Apodo de la Cuenta",
+        "description": "Crea un nombre fácil de recordar para tu cuenta. Esto te ayuda a identificar diferentes cuentas si tienes varias registradas. El apodo es solo para fines de visualización y no afecta las instrucciones de transferencia reales."
+      },
+      "country": {
+        "title": "País del Banco",
+        "description": "Selecciona el país donde se encuentra tu cuenta bancaria. Debe ser el país del banco destino, no cualquier banco intermediario que pueda estar involucrado en la transferencia."
+      },
+      "accountNumber": {
+        "title": "Número de Cuenta",
+        "description": "Tu número de cuenta bancaria completo. Para cuentas internacionales, esto puede ser tu IBAN (Número de Cuenta Bancaria Internacional). Verifica este número ya que es crucial para transferencias exitosas."
+      },
+      "iban": {
+        "title": "IBAN",
+        "description": "Número de Cuenta Bancaria Internacional - un sistema de numeración internacional estandarizado utilizado para identificar cuentas bancarias a través de fronteras nacionales. Requerido para transferencias internacionales en muchos países."
+      },
+      "routingCode": {
+        "title": "Código de Ruta",
+        "description": "El código usado para identificar tu banco en el sistema financiero:\n\n- Para cuentas de EE.UU.: Número de Ruta ABA (9 dígitos)\n- Para cuentas internacionales: Código SWIFT/BIC (8 u 11 caracteres)\n\nEste código asegura que tus fondos sean enviados al banco correcto."
+      }
+    },
+    "accountType": {
+      "title": "Tipo de Cuenta",
+      "bank": "Cuenta Bancaria",
+      "financial": "Cuenta de Inversión",
+      "automatedInvestment": "Inversión Automatizada"
+    },
+    "addAccount": "AÑADIR CUENTA",
+    "registeredAccounts": "Cuentas Registradas",
+    "manageAccounts": "Gestionar cuentas bancarias y financieras",
+    "uploadMethod": {
+      "title": "Subir Archivos",
+      "description": "Adjunta documentos bancarios en PDF, JPG o PNG"
+    },
+    "manualMethod": {
+      "title": "Cargar Manualmente",
+      "description": "Ingresa los datos de tu cuenta directamente"
+    },
+    "form": {
+      "alias": "Sobrenombre de la cuenta",
+      "instructionsFile": "Archivo de Instrucciones",
+      "accountStatement": "Resumen de cuenta",
+      "country": "País del banco",
+      "currency": "Divisa",
+      "accountNumber": "Número de Cuenta / IBAN",
+      "confirmAccountNumber": "Confirmar Número de Cuenta",
+      "routingNumber": "Número de ruta ABA o Código SWIFT / BIC",
+      "accountHolders": "Titular/es de la cuenta"
+    },
+    "status": {
+      "active": "Activa",
+      "pending_review": "Pendiente de Revisión",
+      "pending_client_approval": "Pendiente de Aprobación",
+      "approval_in_progress": "Aprobación en Proceso",
+      "accepted": "Aceptada"
+    }
+  },
+  "dashboard": {
+    "title": "Panel de Inversiones",
+    "summary": "RESUMEN DE INVERSIONES",
+    "accounts": "CUENTAS DE INVERSIÓN",
+    "openAccount": "ABRIR CUENTA",
+    "totalCurrent": "TOTAL ACTUAL",
+    "deposit": "DEPOSITAR",
+    "withdraw": "RETIRAR",
+    "unfundedAccount": "La cuenta necesita fondos",
+    "fundAccountMessage": "Por favor realiza un depósito para comenzar a invertir"
+  },
+  "account": {
+    "accountValue": "VALOR DE LA CUENTA",
+    "portfolio": "TU PORTAFOLIO",
+    "assetAllocation": "ASIGNACIÓN DE ACTIVOS",
+    "buyingPower": "Poder de Compra",
+    "tabs": {
+      "summary": "RESUMEN",
+      "performance": "DESEMPEÑO",
+      "activity": "ACTIVIDAD",
+      "statements": "ESTADOS DE CUENTA",
+      "legal": "LEGALES",
+      "settings": "CONFIGURACIÓN"
+    },
+    "evolution": "Evolución",
+    "composition": "Composición",
+    "settings": {
+      "title": "MI CUENTA",
+      "accountType": "TIPO DE CUENTA",
+      "holders": "TITULARES",
+      "investmentAccountNumber": "NRO CUENTA INVERSIÓN",
+      "product": "PRODUCTO",
+      "alias": "ALIAS",
+      "ibkr": {
+        "title": "MI CUENTA EN IBKR",
+        "button": "Ingresar a IBKR",
+        "description": "Accede a tu cuenta de Interactive Brokers"
+      },
+      "withdrawalAccounts": {
+        "title": "GESTIÓN DE CUENTAS DE RETIRO",
+        "registeredAccounts": "Cuentas Registradas",
+        "manageAccounts": "Gestionar cuentas bancarias y financieras"
+      },
+      "sections": {
+        "legal": "LEGALES",
+        "support": "SOPORTE"
+      }
+    }
+  },
+  "marketHub": {
+    "actions": {
+      "buy": "COMPRAR",
+      "sell": "VENDER",
+      "trade": "OPERAR",
+      "tradeDescription": "Opera acciones y ETFs",
+      "watchlists": "LISTAS E INSTRUMENTOS",
+      "watchlistsDescription": "Administra tus listas",
+      "instruments": "INSTRUMENTOS",
+      "instrumentsDescription": "Explora el mercado",
+      "orders": "MONITOR DE ÓRDENES",
+      "ordersDescription": "Revisa el estado de tus órdenes",
+      "analytics": "ANÁLISIS",
+      "analyticsDescription": "Análisis avanzado de mercado"
+    }
+  },
+  "portfolio": {
+    "changePortfolio": "Cambiar Portafolio",
+    "currentPortfolio": "Portafolio Actual",
+    "change": "Cambiar Portafolio",
+    "changeInProgress": "Cambio de Portafolio en Curso",
+    "requestedOn": "Solicitado el",
+    "completedOn": "Completado el",
+    "currentPortfolioTitle": "Portafolio Actual",
+    "futurePortfolioTitle": "Portafolio Futuro",
+    "changePortfolioTo": "Cambiar Portafolio por",
+    "stocks": "Acciones",
+    "bonds": "Bonos",
+    "cash": "Efectivo",
+    "instruments": "Instrumentos",
+    "status": {
+      "completed": "Completado",
+      "cancelled": "Cancelado",
+      "inProgress": "En Proceso",
+      "in_progress": "En Proceso",
+      "pending": "Pendiente"
+    },
+    "cancel": "Cancelar",
+    "cancelling": "Cancelando...",
+    "history": {
+      "title": "Historial de Cambios",
+      "empty": {
+        "title": "Sin historial de cambios",
+        "description": "Esta cuenta aún no tiene cambios de portafolio registrados. Los cambios aparecerán aquí una vez que realices modificaciones a tu portafolio."
+      }
+    }
+  },
+  "performance": {
+    "title": "RENDIMIENTO",
+    "netGains": "Ganancias Netas",
+    "totalReturn": "Rendimiento Total",
+    "lastUpdate": "Última Actualización",
+    "monthlyReturn": "RENDIMIENTO MENSUAL",
+    "return": "Rendimiento",
+    "periods": {
+      "month": "Mes",
+      "quarter": "Trimestre",
+      "ytd": "Este Año",
+      "inception": "D. Inicio",
+      "all": "DESDE EL INICIO",
+      "year": "Año"
+    }
+  },
+  "activity": {
+    "noTransactions": "No hay transacciones para mostrar",
+    "details": "Ver detalles",
+    "reason": "Razón",
+    "comment": "Comentario",
+    "types": {
+      "withdrawal": "RETIRAR",
+      "deposit": "DEPOSITAR"
+    },
+    "status": {
+      "cancelled": "Cancelado",
+      "completed": "Completado"
+    }
+  },
+  "statements": {
+    "tabs": {
+      "statements": "ESTADOS DE CUENTA",
+      "tax": "DOCUMENTOS FISCALES"
+    },
+    "types": {
+      "monthly": "ESTADO MENSUAL",
+      "annual": "ESTADO ANUAL",
+      "tax": "DOCUMENTO FISCAL"
+    }
+  },
+  "withdrawal": {
+    "from": "Desde",
+    "to": "Para",
+    "amount": "Monto",
+    "balance": "Balance",
+    "reason": "Razones de Retiro",
+    "comment": "Comentario opcional",
+    "processing": "Puede tomar hasta cinco días hábiles procesar una transferencia",
+    "submit": "SOLICITAR RETIRO",
+    "reasons": {
+      "title": "RAZONES DE RETIRO",
+      "liquidityNeed": "Necesidad de liquidez",
+      "alternativeInvestment": "Otra alternativa de inversión",
+      "portfolioPerformance": "Rendimiento del portafolio",
+      "serviceExperience": "Experiencia del servicio",
+      "accountClosure": "Cierre de cuenta"
+    }
+  },
+  "deposit": {
+    "title": "DEPOSITAR",
+    "subtitle": "Si desea hacer una transferencia a su cuenta proporciona la siguiente información a tu banco.",
+    "bankInfo": {
+      "title": "DATOS BANCARIOS",
+      "subtitle": "Información del banco intermediario",
+      "name": "Nombre del Banco",
+      "aba": "ABA#",
+      "swift": "Código SWIFT",
+      "address": "Dirección"
+    },
+    "beneficiary": {
+      "title": "DATOS DEL BENEFICIARIO",
+      "subtitle": "Información de la cuenta destino",
+      "name": "Nombre del Beneficiario",
+      "accountNumber": "Número de cuenta",
+      "address": "Dirección"
+    },
+    "reference": {
+      "title": "REFERENCIA",
+      "subtitle": "Incluir en la transferencia",
+      "processing": "Los fondos pueden tomar hasta 2 días hábiles para ser acreditados en condiciones normales"
+    },
+    "actions": {
+      "email": "Email",
+      "share": "Compartir",
+      "copy": "Copiar",
+      "copied": "¡Copiado!"
+    }
+  }
+}
