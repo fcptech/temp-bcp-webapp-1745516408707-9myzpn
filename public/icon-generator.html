@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PWA Icon Generator</title>
+  <style>
+    canvas { 
+      border: 1px solid #ccc;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="icon192" width="192" height="192"></canvas>
+  <canvas id="icon512" width="512" height="512"></canvas>
+  <canvas id="iconMaskable" width="512" height="512"></canvas>
+
+  <script>
+    function drawIcon(canvas, size, maskable = false) {
+      const ctx = canvas.getContext('2d');
+      const padding = maskable ? size * 0.2 : size * 0.15;
+      const iconSize = size - (padding * 2);
+
+      // Clear canvas
+      ctx.fillStyle = '#002060';
+      ctx.fillRect(0, 0, size, size);
+
+      // Draw chart icon
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = size * 0.04;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+
+      // Draw bars
+      const barWidth = iconSize * 0.2;
+      const barSpacing = iconSize * 0.1;
+      const startX = padding + (iconSize - ((barWidth * 3) + (barSpacing * 2))) / 2;
+      const baseY = padding + iconSize;
+
+      // Bar heights (percentage of icon size)
+      const heights = [0.4, 0.7, 0.5];
+
+      heights.forEach((height, i) => {
+        const x = startX + (i * (barWidth + barSpacing));
+        const barHeight = iconSize * height;
+        ctx.beginPath();
+        ctx.moveTo(x, baseY);
+        ctx.lineTo(x, baseY - barHeight);
+        ctx.lineTo(x + barWidth, baseY - barHeight);
+        ctx.lineTo(x + barWidth, baseY);
+        ctx.stroke();
+      });
+    }
+
+    // Generate icons
+    drawIcon(document.getElementById('icon192'), 192);
+    drawIcon(document.getElementById('icon512'), 512);
+    drawIcon(document.getElementById('iconMaskable'), 512, true);
+
+    // Download links
+    const sizes = [
+      { id: 'icon192', name: 'icon-192.png' },
+      { id: 'icon512', name: 'icon-512.png' },
+      { id: 'iconMaskable', name: 'icon-maskable.png' }
+    ];
+
+    sizes.forEach(({id, name}) => {
+      const canvas = document.getElementById(id);
+      const link = document.createElement('a');
+      link.download = name;
+      link.href = canvas.toDataURL('image/png');
+      link.textContent = `Download ${name}`;
+      document.body.appendChild(link);
+      document.body.appendChild(document.createElement('br'));
+    });
+  </script>
+</body>
+</html>
