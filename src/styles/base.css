@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary-rgb: 15, 82, 186;
+  --color-secondary-rgb: 46, 116, 212;
+  --color-accent-rgb: 91, 154, 232;
+  
+  --color-primary: rgb(var(--color-primary-rgb));
+  --color-secondary: rgb(var(--color-secondary-rgb));
+  --color-accent: rgb(var(--color-accent-rgb));
+}
+
+@layer base {
+  .bg-theme-primary {
+    background-color: var(--color-primary);
+  }
+  
+  .bg-theme-secondary {
+    background-color: var(--color-secondary);
+  }
+  
+  .bg-theme-accent {
+    background-color: var(--color-accent);
+  }
+  
+  .text-theme-primary {
+    color: var(--color-primary);
+  }
+  
+  .text-theme-secondary {
+    color: var(--color-secondary);
+  }
+  
+  .text-theme-accent {
+    color: var(--color-accent);
+  }
+
+  .border-theme-primary {
+    border-color: var(--color-primary);
+  }
+  
+  .border-theme-secondary {
+    border-color: var(--color-secondary);
+  }
+  
+  .border-theme-accent {
+    border-color: var(--color-accent);
+  }
+}
+
+/* Widget-specific styles */
+.vestiva-widget {
+  font-family: system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.vestiva-widget * {
+  box-sizing: border-box;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .vestiva-widget {
+    font-size: 14px;
+  }
+}
+
+/* Shadow DOM isolation */
+:host {
+  all: initial;
+  display: block;
+}
