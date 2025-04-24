@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary-rgb: 0, 32, 96;
+  --color-secondary-rgb: 0, 48, 135;
+  --color-accent-rgb: 0, 71, 187;
+  
+  --color-primary: rgb(var(--color-primary-rgb));
+  --color-secondary: rgb(var(--color-secondary-rgb));
+  --color-accent: rgb(var(--color-accent-rgb));
+}
+
+@layer base {
+  .bg-theme-primary {
+    background-color: var(--color-primary);
+  }
+  
+  .bg-theme-secondary {
+    background-color: var(--color-secondary);
+  }
+  
+  .bg-theme-accent {
+    background-color: var(--color-accent);
+  }
+  
+  .text-theme-primary {
+    color: var(--color-primary);
+  }
+  
+  .text-theme-secondary {
+    color: var(--color-secondary);
+  }
+  
+  .text-theme-accent {
+    color: var(--color-accent);
+  }
+
+  .border-theme-primary {
+    border-color: var(--color-primary);
+  }
+  
+  .border-theme-secondary {
+    border-color: var(--color-secondary);
+  }
+  
+  .border-theme-accent {
+    border-color: var(--color-accent);
+  }
+}
