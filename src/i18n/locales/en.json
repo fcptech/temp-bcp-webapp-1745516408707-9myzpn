@@ -1,0 +1,306 @@
+{
+  "common": {
+    "welcome": "Welcome back",
+    "signIn": "Sign in",
+    "signOut": "Sign Out",
+    "email": "Email address",
+    "password": "Password",
+    "loading": "Loading...",
+    "error": {
+      "invalidCredentials": "Invalid email or password"
+    },
+    "saveChanges": "Save Changes",
+    "noData": "No information to display",
+    "close": "Close",
+    "send": "Send",
+    "deleteAccount": "Delete account",
+    "selectAccount": "Select account",
+    "back": "Back",
+    "approve": "Approve"
+  },
+  "auth": {
+    "resetPassword": {
+      "link": "Reset password",
+      "request": "Reset your password",
+      "requestSubmit": "Send instructions",
+      "title": "Create new password",
+      "newPassword": "New password",
+      "confirmPassword": "Confirm password",
+      "submit": "Reset password",
+      "validating": "Validating reset link...",
+      "invalidToken": "Invalid reset link",
+      "invalidTokenMessage": "This password reset link is invalid or has expired. Please request a new one.",
+      "requestNew": "Request new reset link",
+      "success": "Password reset successful",
+      "successMessage": "Your password has been reset. You can now log in with your new password.",
+      "error": {
+        "invalidEmail": "Invalid email address",
+        "invalidToken": "Invalid or expired reset link",
+        "passwordMismatch": "Passwords don't match",
+        "passwordRequirements": "Password must be at least 12 characters long and include uppercase, lowercase, number and special character",
+        "captchaRequired": "Please complete the captcha verification"
+      }
+    }
+  },
+  "nav": {
+    "home": "HOME",
+    "investments": "INVESTMENTS",
+    "insurance": "INSURANCE",
+    "faq": "FAQ",
+    "legal": "LEGAL"
+  },
+  "withdrawalAccounts": {
+    "title": "WITHDRAWAL ACCOUNTS",
+    "help": {
+      "title": "Withdrawal Accounts",
+      "bank": {
+        "title": "Bank Account",
+        "description": "Withdraw funds directly to your personal bank account. This is the most common option for receiving your funds. You can link accounts from major banks like Santander, BBVA, or Bank of America."
+      },
+      "financial": {
+        "title": "Investment Account",
+        "description": "Transfer funds to another financial institution where you have an investment account. This option is ideal for moving funds between investment platforms or brokers like Pershing LLC or Morgan Stanley."
+      },
+      "alias": {
+        "title": "Account Nickname",
+        "description": "Create an easy-to-remember name for your account. This helps you identify different accounts if you have multiple ones registered. The nickname is for display purposes only and doesn't affect the actual transfer instructions."
+      },
+      "country": {
+        "title": "Bank Country",
+        "description": "Select the country where your bank account is located. This should be the destination bank's country, not any intermediary bank that might be involved in the transfer."
+      },
+      "accountNumber": {
+        "title": "Account Number",
+        "description": "Your complete bank account number. For international accounts, this might be your IBAN (International Bank Account Number). Double-check this number as it's crucial for successful transfers."
+      },
+      "iban": {
+        "title": "IBAN",
+        "description": "International Bank Account Number - a standardized international numbering system used to identify bank accounts across national borders. Required for international transfers in many countries."
+      },
+      "routingCode": {
+        "title": "Routing Code",
+        "description": "The code used to identify your bank in the financial system:\n\n- For US accounts: ABA Routing Number (9 digits)\n- For international accounts: SWIFT/BIC Code (8 or 11 characters)\n\nThis code ensures your funds are sent to the correct bank."
+      }
+    },
+    "accountType": {
+      "title": "Account Type",
+      "bank": "Bank Account",
+      "financial": "Investment Account",
+      "automatedInvestment": "Automated Investment"
+    },
+    "addAccount": "ADD ACCOUNT",
+    "registeredAccounts": "Registered Accounts",
+    "manageAccounts": "Manage bank and financial accounts",
+    "uploadMethod": {
+      "title": "Upload Files",
+      "description": "Attach bank documents in PDF, JPG, or PNG format"
+    },
+    "manualMethod": {
+      "title": "Enter Manually",
+      "description": "Enter your account details directly"
+    },
+    "form": {
+      "alias": "Account nickname",
+      "instructionsFile": "Instructions File",
+      "accountStatement": "Account Statement",
+      "country": "Bank country",
+      "currency": "Currency",
+      "accountNumber": "Account Number / IBAN",
+      "confirmAccountNumber": "Confirm Account Number",
+      "routingNumber": "ABA Routing Number or SWIFT / BIC Code",
+      "accountHolders": "Account Holder(s)"
+    },
+    "status": {
+      "active": "Active",
+      "pending_review": "Pending Review",
+      "pending_client_approval": "Pending Approval",
+      "approval_in_progress": "Approval in Progress",
+      "accepted": "Accepted"
+    }
+  },
+  "dashboard": {
+    "title": "Investment Dashboard",
+    "summary": "INVESTMENT SUMMARY",
+    "accounts": "INVESTMENT ACCOUNTS",
+    "openAccount": "OPEN ACCOUNT",
+    "totalCurrent": "CURRENT TOTAL",
+    "deposit": "DEPOSIT",
+    "withdraw": "WITHDRAW",
+    "unfundedAccount": "Account needs funding",
+    "fundAccountMessage": "Please make a deposit to start investing"
+  },
+  "account": {
+    "accountValue": "ACCOUNT VALUE",
+    "portfolio": "YOUR PORTFOLIO",
+    "assetAllocation": "ASSET ALLOCATION",
+    "buyingPower": "Buying Power",
+    "tabs": {
+      "summary": "SUMMARY",
+      "performance": "PERFORMANCE",
+      "activity": "ACTIVITY",
+      "statements": "STATEMENTS",
+      "legal": "LEGAL",
+      "settings": "SETTINGS"
+    },
+    "evolution": "Evolution",
+    "composition": "Composition",
+    "settings": {
+      "title": "MY ACCOUNT",
+      "accountType": "ACCOUNT TYPE",
+      "holders": "HOLDERS",
+      "investmentAccountNumber": "INVESTMENT ACCOUNT NUMBER",
+      "product": "PRODUCT",
+      "alias": "ALIAS",
+      "ibkr": {
+        "title": "MY IBKR ACCOUNT",
+        "button": "Access IBKR",
+        "description": "Access your Interactive Brokers account"
+      },
+      "withdrawalAccounts": {
+        "title": "WITHDRAWAL ACCOUNTS MANAGEMENT",
+        "registeredAccounts": "Registered Accounts",
+        "manageAccounts": "Manage bank and financial accounts"
+      },
+      "sections": {
+        "legal": "LEGAL",
+        "support": "SUPPORT"
+      }
+    }
+  },
+  "marketHub": {
+    "actions": {
+      "buy": "BUY",
+      "sell": "SELL",
+      "trade": "TRADE",
+      "tradeDescription": "Trade stocks and ETFs",
+      "watchlists": "WATCHLISTS & INSTRUMENTS",
+      "watchlistsDescription": "Manage your watchlists",
+      "instruments": "INSTRUMENTS",
+      "instrumentsDescription": "Explore the market",
+      "orders": "ORDER MONITOR",
+      "ordersDescription": "Check your orders status",
+      "analytics": "ANALYTICS",
+      "analyticsDescription": "Advanced market analysis"
+    }
+  },
+  "portfolio": {
+    "changePortfolio": "Change Portfolio",
+    "currentPortfolio": "Current Portfolio",
+    "change": "Change Portfolio",
+    "changeInProgress": "Portfolio Change in Progress",
+    "requestedOn": "Requested on",
+    "completedOn": "Completed on",
+    "currentPortfolioTitle": "Current Portfolio",
+    "futurePortfolioTitle": "Future Portfolio",
+    "changePortfolioTo": "Change Portfolio to",
+    "stocks": "Stocks",
+    "bonds": "Bonds",
+    "cash": "Cash",
+    "instruments": "Instruments",
+    "status": {
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "inProgress": "In Progress",
+      "in_progress": "In Progress",
+      "pending": "Pending"
+    },
+    "cancel": "Cancel",
+    "cancelling": "Cancelling...",
+    "history": {
+      "title": "Change History",
+      "empty": {
+        "title": "No change history",
+        "description": "This account has no portfolio changes recorded. Changes will appear here once you make modifications to your portfolio."
+      }
+    }
+  },
+  "performance": {
+    "title": "PERFORMANCE",
+    "netGains": "Net Gains",
+    "totalReturn": "Total Return",
+    "lastUpdate": "Last Update",
+    "monthlyReturn": "MONTHLY RETURN",
+    "return": "Return",
+    "periods": {
+      "month": "Month",
+      "quarter": "Quarter",
+      "ytd": "YTD",
+      "inception": "Since Inception",
+      "all": "SINCE INCEPTION",
+      "year": "Year"
+    }
+  },
+  "activity": {
+    "noTransactions": "No transactions to show",
+    "details": "View details",
+    "reason": "Reason",
+    "comment": "Comment",
+    "types": {
+      "withdrawal": "WITHDRAW",
+      "deposit": "DEPOSIT"
+    },
+    "status": {
+      "cancelled": "Cancelled",
+      "completed": "Completed"
+    }
+  },
+  "statements": {
+    "tabs": {
+      "statements": "ACCOUNT STATEMENTS",
+      "tax": "TAX DOCUMENTS"
+    },
+    "types": {
+      "monthly": "MONTHLY STATEMENT",
+      "annual": "ANNUAL STATEMENT",
+      "tax": "TAX DOCUMENT"
+    }
+  },
+  "withdrawal": {
+    "from": "From",
+    "to": "To",
+    "amount": "Amount",
+    "balance": "Balance",
+    "reason": "Withdrawal Reason",
+    "comment": "Optional comment",
+    "processing": "It may take up to five business days to process a transfer",
+    "submit": "REQUEST WITHDRAWAL",
+    "reasons": {
+      "title": "WITHDRAWAL REASONS",
+      "liquidityNeed": "Need for liquidity",
+      "alternativeInvestment": "Alternative investment",
+      "portfolioPerformance": "Portfolio performance",
+      "serviceExperience": "Service experience",
+      "accountClosure": "Account closure"
+    }
+  },
+  "deposit": {
+    "title": "DEPOSIT",
+    "subtitle": "To make a transfer to your account, provide the following information to your bank.",
+    "bankInfo": {
+      "title": "BANK INFORMATION",
+      "subtitle": "Intermediary bank information",
+      "name": "Bank Name",
+      "aba": "ABA#",
+      "swift": "SWIFT Code",
+      "address": "Address"
+    },
+    "beneficiary": {
+      "title": "BENEFICIARY INFORMATION",
+      "subtitle": "Destination account information",
+      "name": "Beneficiary Name",
+      "accountNumber": "Account Number",
+      "address": "Address"
+    },
+    "reference": {
+      "title": "REFERENCE",
+      "subtitle": "Include in transfer",
+      "processing": "Funds may take up to two business days to be credited under normal conditions"
+    },
+    "actions": {
+      "email": "Email",
+      "share": "Share",
+      "copy": "Copy",
+      "copied": "Copied!"
+    }
+  }
+}
