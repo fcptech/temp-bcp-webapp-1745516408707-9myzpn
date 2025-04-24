@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Investment Platform API Documentation</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #64748b;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --light: #f3f4f6;
+      --dark: #1f2937;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      line-height: 1.5;
+      color: var(--dark);
+    }
+
+    h1, h2, h3, h4 {
+      color: var(--primary);
+      border-bottom: 2px solid var(--light);
+      padding-bottom: 0.5rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .card:hover {
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    code {
+      background-color: var(--light);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+
+    pre {
+      background-color: var(--light);
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+
+    .endpoint {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      border-left: 4px solid var(--primary);
+      background-color: white;
+    }
+
+    .method {
+      display: inline-block;
+      padding: 0.1rem 0.5rem;
+      border-radius: 4px;
+      color: white;
+      font-weight: bold;
+      margin-right: 0.5rem;
+    }
+
+    .get { background-color: var(--success); }
+    .post { background-color: var(--primary); }
+    .put { background-color: var(--warning); }
+    .delete { background-color: var(--danger); }
+
+    .auth-required {
+      background-color: var(--warning);
+      color: white;
+      padding: 0.1rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      margin-left: 0.5rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+
+    th, td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    th {
+      background-color: var(--light);
+    }
+
+    .response-example {
+      margin-top: 1rem;
+    }
+
+    .field-required {
+      color: var(--danger);
+      font-weight: bold;
+      margin-left: 0.25rem;
+    }
+
+    .field-optional {
+      color: var(--secondary);
+      font-style: italic;
+      margin-left: 0.25rem;
+    }
+
+    .tab {
+      margin-left: 1rem;
+    }
+
+    .section {
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>API Documentation Express</h1>
+  
+  <div class="card">
+    <h2>Overview</h2>
+    <p>
+      This API provides endpoints for managing investment accounts, portfolios, transactions, and user authentication.
+      The API follows RESTful principles and uses JSON for data exchange.
+    </p>
+
+    <h3>Base URL</h3>
+    <pre>http://localhost:3000</pre>
+
+    <h3>Common Headers</h3>
+    <table>
+      <tr>
+        <th>Header</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>Content-Type</td>
+        <td>Yes</td>
+        <td>application/json</td>
+      </tr>
+      <tr>
+        <td>Authorization</td>
+        <td>Yes*</td>
+        <td>Bearer &lt;token&gt; (*Required for authenticated endpoints)</td>
+      </tr>
+      <tr>
+        <td>x-operator-id</td>
+        <td>Yes</td>
+        <td>Operator identifier (e.g., "vestiva", "invex")</td>
+      </tr>
+    </table>
+
+    <h3>Response Format</h3>
+    <p>All endpoints return responses in the following format:</p>
+    <pre>{
+  "status": "success" | "error",
+  "message": "Human readable message",
+  "data": null | object | array
+}</pre>
+  </div>
+
+  <div class="card">
+    <h2>Authentication</h2>
+    
+    <div class="endpoint">
+      <span class="method post">POST</span>
+      <code>/auth/login</code>
+      <p>Authenticate user and get access token</p>
+
+      <h4>Request Body</h4>
+      <table>
+        <tr>
+          <th>Field</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Required</th>
+        </tr>
+        <tr>
+          <td>email</td>
+          <td>string</td>
+          <td>User's email address</td>
+          <td><span class="field-required">Required</span></td>
+        </tr>
+        <tr>
+          <td>password</td>
+          <td>string</td>
+          <td>User's password (min 6 characters)</td>
+          <td><span class="field-required">Required</span></td>
+        </tr>
+      </table>
+
+      <h4>Example Request</h4>
+      <pre>{
+  "email": "demo@vestiva.com",
+  "password": "demo123"
+}</pre>
+
+      <h4>Example Response</h4>
+      <pre>{
+  "status": "success",
+  "message": "Login successful",
+  "data": {
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "user": {
+      "id": "550e8400-e29b-41d4-a716-446655440000",
+      "email": "demo@vestiva.com",
+      "name": "Demo User"
+    },
+    "operator": {
+      "id": "vestiva",
+      "name": "Vestiva",
+      "appName": "Vestiva Investment Platform",
+      "theme": {
+        "primary": "#002060",
+        "secondary": "#003087",
+        "accent": "#0047BB"
+      }
+    }
+  }
+}</pre>
+    </div>
+
+    <div class="endpoint">
+      <span class="method post">POST</span>
+      <code>/auth/reset-password/request</code>
+      <p>Request password reset</p>
+
+      <h4>Request Body</h4>
+      <table>
+        <tr>
+          <th>Field</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Required</th>
+        </tr>
+        <tr>
+          <td>email</td>
+          <td>string</td>
+          <td>User's email address</td>
+          <td><span class="field-required">Required</span></td>
+        </tr>
+        <tr>
+          <td>recaptchaToken</td>
+          <td>string</td>
+          <td>Google reCAPTCHA token</td>
+          <td><span class="field-required">Required</span></td>
+        </tr>
+      </table>
+
+      <h4>Example Request</h4>
+      <pre>{
+  "email": "demo@vestiva.com",
+  "recaptchaToken": "03AGdBq24T..."
+}</pre>
+
+      <h4>Example Response</h4>
+      <pre>{
+  "status": "success",
+  "message": "Password reset email sent",
+  "data": null
+}</pre>
+    </div>
+
+    <div class="endpoint">
+      <span class="method post">POST</span>
+      <code>/auth/reset-password/reset</code>
+      <p>Reset password using token</p>
+
+      <h4>Request Body</h4>
+      <table>
+        <tr>
+          <th>Field</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Required</th>
+        </tr>
+        <tr>
+          <td>token</td>
+          <td>string</td>
+          <td>Reset token from email</td>
+          <td><span class="field-required">Required</span></td>
+        </tr>
+        <tr>
+          <td>password</td>
+          <td>string</td>
+          <td>New password (min 6 characters)</td>
+          <td><span class="field-required">Required</span></td>
+        </tr>
+        <tr>
+          <td>confirmPassword</td>
+          <td>string</td>
+          <td>Confirm new password</td>
+          <td><span class="field-required">Required</span></td>
+        </tr>
+      </table>
+
+      <h4>Example Request</h4>
+      <pre>{
+  "token": "550e8400-e29b-41d4-a716-446655440000",
+  "password": "newPassword123",
+  "confirmPassword": "newPassword123"
+}</pre>
+
+      <h4>Example Response</h4>
+      <pre>{
+  "status": "success",
+  "message": "Password reset successful",
+  "data": null
+}</pre>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Accounts</h2>
+    
+    <div class="endpoint">
+      <span class="method get">GET</span>
+      <code>/api/accounts</code>
+      <span class="auth-required">Auth Required</span>
+      <p>Get all accounts for the authenticated user</p>
+
+      <h4>Response Fields</h4>
+      <table>
+        <tr>
+          <th>Field</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>id</td>
+          <td>string</td>
+          <td>Account identifier</td>
+        </tr>
+        <tr>
+          <td>alias</td>
+          <td>string</td>
+          <td>Account display name</td>
+        </tr>
+        <tr>
+          <td>type</td>
+          <td>string</td>
+          <td>Account type (AUTOMATED_INVESTMENT, MARKET_HUB)</td>
+        </tr>
+        <tr>
+          <td>value</td>
+          <td>number</td>
+          <td>Current account value</td>
+        </tr>
+        <tr>
+          <td>percentage</td>
+          <td>number</td>
+          <td>Portfolio allocation percentage</td>
+        </tr>
+        <tr>
+          <td>funded</td>
+          <td>boolean</td>
+          <td>Whether the account has been funded</td>
+        </tr>
+        <tr>
+          <td>performance</td>
+          <td>object</td>
+          <td>Performance metrics</td>
+        </tr>
+      </table>
+
+      <h4>Example Response</h4>
+      <pre>{
+  "status": "success",
+  "message": "Accounts retrieved successfully",
+  "data": [
+    {
+      "id": "U13186484",
+      "alias": "Joaco",
+      "type": "AUTOMATED_INVESTMENT",
+      "value": 14562.22,
+      "percentage": 35,
+      "funded": true,
+      "performance": {
+        "total": -115.21,
+        "percentage": -0.79,
+        "period": "1Y"
+      }
+    },
+    {
+      "id": "U10246500",
+      "alias": "Market Hub",
+      "type": "MARKET_HUB",
+      "value": 5302.55,
+      "percentage": 15,
+      "funded": true,
+      "buyingPower": 225.46,
+      "performance": {
+        "total": 317.23,
+        "percentage": 6.37,
+        "period": "1Y"
+      }
+    }
+  ]
+}</pre>
+    </div>
+
+    <div class="endpoint">
+      <span class="method get">GET</span>
+      <code>/api/accounts/:id/instruments</code>
+      <span class="auth-required">Auth Required</span>
+      <p>Get account instruments</p>
+
+      <h4>URL Parameters</h4>
+      <table>
+        <tr>
+          <th>Parameter</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>id</td>
+          <td>string</td>
+          <td>Account identifier</td>
+        </tr>
+      </table>
+
+      <h4>Example Response</h4>
+      <pre>{
+  "status": "success",
+  "message": "Account instruments retrieved successfully",
+  "data": [
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc.",
+      "sector": "Technology",
+      "price": 173.25,
+      "quantity": 10,
+      "value": 1732.50,
+      "performance": 125.30,
+      "percentage": 33.33,
+      "logoUrl": "https://companieslogo.com/img/orig/AAPL-bf1a4314.png"
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corporation",
+      "sector": "Technology",
+      "price": 338.11,
+      "quantity": 5,
+      "value": 1690.55,
+      "performance": 89.75,
+      "percentage": 33.33,
+      "logoUrl": "https://companieslogo.com/img/orig/MSFT-6e6e6e96.png"
+    }
+  ]
+}</pre>
+    </div>
+
+    <div class="endpoint">
+      <span class="method put">PUT</span>
+      <code>/api/accounts/:id/portfolio</code>
+      <span class="auth-required">Auth Required</span>
+      <p>Update account portfolio</p>
+
+      <h4>URL Parameters</h4>
+      <table>
+        <tr>
+          <th>Parameter</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>id</td>
+          <td>string</td>
+          <td>Account identifier</td>
+        </tr>
+      </table>
+
+      <h4>Request Body</h4>
+      <table>
+        <tr>
+          <th>Field</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Required</th>
+        </tr>
+        <tr>
+          <td>portfolioId</td>
+          <td>string</td>
+          <td>New portfolio identifier</td>
+          <td><span class="field-required">Required</span></td>
+        </tr>
+      </table>
+
+      <h4>Example Request</h4>
+      <pre>{
+  "portfolioId": "blackrock-moderado"
+}</pre>
+
+      <h4>Example Response</h4>
+      <pre>{
+  "status": "success",
+  "message": "Portfolio update initiated",
+  "data": {
+    "id": "550e8400-e29b-41d4-a716-446655440000",
+    "accountId": "U13186484",
+    "portfolioId": "blackrock-moderado",
+    "status": "pending",
+    "requestDate": "2024-04-15T10:30:00Z"
+  }
+}</pre>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Settings</h2>
+    
+    <div class="endpoint">
+      <span class="method post">POST</span>
+      <code>/api/accounts/:id/withdrawal-accounts</code>
+      <span class="auth-required">Auth Required</span>
+      <p>Add withdrawal account</p>
+
+      <h4>URL Parameters</h4>
+      <table>
+        <tr>
+          <th>Parameter</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>id</td>
+          <td>string</td>
+          <td>Account identifier</td>
+        </tr>
+      </table>
+
+      <h4>Request Body</h4>
+      <table>
+        <tr>
+          <th>Field</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Required</th>
+        </tr>
+        <tr>
+          <td>alias</td>
+          <td>string</td>
+          <td>Display name for the withdrawal account</td>
+          <td><span class="field-required">Required</span></td>
+        </tr>
+        <tr>
+          <td>type</td>
+          <td>string</td>
+          <td>Account type (bank, financial)</td>
+          <td><span class="field-required">Required</span></td>
+        </tr>
+        <tr>
+          <td>accountNumber</td>
+          <td>string</td>
+          <td>Bank account number</td>
+          <td><span class="field-required">Required</span></td>
+        </tr>
+        <tr>
+          <td>country</td>
+          <td>string</td>
+          <td>Two-letter country code (ISO 3166-1)</td>
+          <td><span class="field-required">Required</span></td>
+        </tr>
+        <tr>
+          <td>currency</td>
+          <td>string</td>
+          <td>Three-letter currency code (ISO 4217)</td>
+          <td><span class="field-required">Required</span></td>
+        </tr>
+        <tr>
+          <td>routingNumber</td>
+          <td>string</td>
+          <td>Bank routing number (US accounts only)</td>
+          <td><span class="field-optional">Optional</span></td>
+        </tr>
+      </table>
+
+      <h4>Example Request</h4>
+      <pre>{
+  "alias": "My Bank Account",
+  "type": "bank",
+  "accountNumber": "1234567890",
+  "country": "US",
+  "currency": "USD",
+  "routingNumber": "021000021"
+}</pre>
+
+      <h4>Example Response</h4>
+      <pre>{
+  "status": "success",
+  "message": "Withdrawal account added successfully",
+  "data": {
+    "id": "WA001",
+    "alias": "My Bank Account",
+    "type": "bank",
+    "accountNumber": "****7890",
+    "status": "pending_review",
+    "country": "US",
+    "currency": "USD",
+    "routingNumber": "021000021"
+  }
+}</pre>
+    </div>
+
+    <div class="endpoint">
+      <span class="method delete">DELETE</span>
+      <code>/api/accounts/:id/withdrawal-accounts/:withdrawalAccountId</code>
+      <span class="auth-required">Auth Required</span>
+      <p>Delete withdrawal account</p>
+
+      <h4>URL Parameters</h4>
+      <table>
+        <tr>
+          <th>Parameter</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>id</td>
+          <td>string</td>
+          <td>Account identifier</td>
+        </tr>
+        <tr>
+          <td>withdrawalAccountId</td>
+          <td>string</td>
+          <td>Withdrawal account identifier</td>
+        </tr>
+      </table>
+
+      <h4>Example Response</h4>
+      <pre>{
+  "status": "success",
+  "message": "Withdrawal account deleted successfully",
+  "data": null
+}</pre>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Performance</h2>
+    
+    <div class="endpoint">
+      <span class="method get">GET</span>
+      <code>/api/accounts/:id/performance</code>
+      <span class="auth-required">Auth Required</span>
+      <p>Get account performance data</p>
+
+      <h4>URL Parameters</h4>
+      <table>
+        <tr>
+          <th>Parameter</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>id</td>
+          <td>string</td>
+          <td>Account identifier</td>
+        </tr>
+      </table>
+
+      <h4>Query Parameters</h4>
+      <table>
+        <tr>
+          <th>Parameter</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Required</th>
+          <th>Values</th>
+        </tr>
+        <tr>
+          <td>period</td>
+          <td>string</td>
+          <td>Time period for performance data</td>
+          <td><span class="field-required">Required</span></td>
+          <td>6M, 1Y, inception</td>
+        </tr>
+      </table>
+
+      <h4>Example Response</h4>
+      <pre>{
+  "status": "success",
+  "message": "Performance data retrieved successfully",
+  "data": {
+    "period": "1Y",
+    "data": [
+      { "date": "2024-05", "value": 1.25 },
+      { "date": "2024-06", "value": 2.31 },
+      { "date": "2024-07", "value": 3.25 }
+    ]
+  }
+}</pre>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Activity</h2>
+    
+    <div class="endpoint">
+      <span class="method get">GET</span>
+      <code>/api/accounts/:id/transactions</code>
+      <span class="auth-required">Auth Required</span>
+      <p>Get account transactions</p>
+
+      <h4>URL Parameters</h4>
+      <table>
+        <tr>
+          <th>Parameter</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>id</td>
+          <td>string</td>
+          <td>Account identifier</td>
+        </tr>
+      </table>
+
+      <h4>Query Parameters</h4>
+      <table>
+        <tr>
+          <th>Parameter</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Required</th>
+        </tr>
+        <tr>
+          <td>startDate</td>
+          <td>string</td>
+          <td>Start date (YYYY-MM-DD)</td>
+          <td><span class="field-optional">Optional</span></td>
+        </tr>
+        <tr>
+          <td>endDate</td>
+          <td>string</td>
+          <td>End date (YYYY-MM-DD)</td>
+          <td><span class="field-optional">Optional</span></td>
+        </tr>
+        <tr>
+          <td>type</td>
+          <td>string</td>
+          <td>Transaction type (DEPÓSITO, RETIRO)</td>
+          <td><span class="field-optional">Optional</span></td>
+        </tr>
+        <tr>
+          <td>status</td>
+          <td>string</td>
+          <td>Transaction status (Completado, Cancelado)</td>
+          <td><span class="field-optional">Optional</span></td>
+        </tr>
+        <tr>
+          <td>page</td>
+          <td>number</td>
+          <td>Page number</td>
+          <td><span class="field-optional">Optional (default: 1)</span></td>
+        </tr>
+        <tr>
+          <td>limit</td>
+          <td>number</td>
+          <td>Items per page</td>
+          <td><span class="field-optional">Optional (default: 10)</span></td>
+        </tr>
+      </table>
+
+      <h4>Example Response</h4>
+      <pre>{
+  "status": "success",
+  "message": "Transactions retrieved successfully",
+  "data": {
+    "transactions": [
+      {
+        "date": "2024-11-06",
+        "type": "RETIRO",
+        "accountId": "U13186484",
+        "alias": "Joaco",
+        "amount": -10.00,
+        "status": "Cancelado",
+        "reason": "Necesidad de liquidez",
+        "comment": "Test"
+      }
+    ],
+    "total": 1,
+    "page": 1,
+    "limit": 10
+  }
+}</pre>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Statements</h2>
+    
+    <div class="endpoint">
+      <span class="method get">GET</span>
+      <code>/api/accounts/:id/statements</code>
+      <span class="auth-required">Auth Required</span>
+      <p>Get account statements</p>
+
+      <h4>URL Parameters</h4>
+      <table>
+        <tr>
+          <th>Parameter</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>id</td>
+          <td>string</td>
+          <td>Account identifier</td>
+        </tr>
+      </table>
+
+      <h4>Query Parameters</h4>
+      <table>
+        <tr>
+          <th>Parameter</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Required</th>
+          <th>Values</th>
+        </tr>
+        <tr>
+          <td>type</td>
+          <td>string</td>
+          <td>Statement type</td>
+          <td><span class="field-optional">Optional</span></td>
+          <td>monthly, annual</td>
+        </tr>
+        <tr>
+          <td>year</td>
+          <td>string</td>
+          <td>Filter by year</td>
+          <td><span class="field-optional">Optional</span></td>
+          <td>YYYY format (e.g., "2024")</td>
+        </tr>
+        <tr>
+          <td>page</td>
+          <td>number</td>
+          <td>Page number</td>
+          <td><span class="field-optional">Optional (default: 1)</span></td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>limit</td>
+          <td>number</td>
+          <td>Items per page</td>
+          <td><span class="field-optional">Optional (default: 10)</span></td>
+          <td>&nbsp;</td>
+        </tr>
+      </table>
+
+      <h4>Example Response</h4>
+      <pre>{
+  "status": "success",
+  "message": "Statements retrieved successfully",
+  "data": {
+    "statements": [
+      {
+        "type": "monthly",
+        "date": "2025-03-01",
+        "year": "2025",
+        "month": "MAR",
+        "accountId": "U13186484",
+        "url": "https://example.com/statements/202503.pdf"
+      },
+      {
+        "type": "monthly",
+        "date": "2025-02-01",
+        "year": "2025",
+        "month": "FEB",
+        "accountId": "U13186484",
+        "url": "https://example.com/statements/202502.pdf"
+      }
+    ],
+    "total": 2,
+    "page": 1,
+    "limit": 10
+  }
+}</pre>
+    </div>
+
+    <div class="endpoint">
+      <span class="method get">GET</span>
+      <code>/api/accounts/:id/tax-documents</code>
+      <span class="auth-required">Auth Required</span>
+      <p>Get account tax documents</p>
+
+      <h4>URL Parameters</h4>
+      <table>
+        <tr>
+          <th>Parameter</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>id</td>
+          <td>string</td>
+          <td>Account identifier</td>
+        </tr>
+      </table>
+
+      <h4>Example Response</h4>
+      <pre>{
+  "status": "success",
+  "message": "Tax documents retrieved successfully",
+  "data": [
+    {
+      "type": "tax",
+      "date": "2024-12-31",
+      "year": "2024",
+      "accountId": "U13186484",
+      "documentId": "F1042S",
+      "url": "https://example.com/tax/2024/F1042S.pdf"
+    }
+  ]
+}</pre>
+    </div>
+
+    <div class="endpoint">
+      <span class="method get">GET</span>
+      <code>/api/statements/:id/download</code>
+      <span class="auth-required">Auth Required</span>
+      <p>Get download URL for a specific statement</p>
+
+      <h4>URL Parameters</h4>
+      <table>
+        <tr>
+          <th>Parameter</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>id</td>
+          <td>string</td>
+          <td>Statement identifier</td>
+        </tr>
+      </table>
+
+      <h4>Example Response</h4>
+      <pre>{
+  "status": "success",
+  "message": "Statement download URL retrieved successfully",
+  "data": {
+    "url": "https://example.com/statements/202503.pdf"
+  }
+}</pre>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Architecture</h2>
+    <h3>Technology Stack</h3>
+    <ul>
+      <li>Node.js + Express.js for the API server</li>
+      <li>JWT for authentication</li>
+      <li>bcryptjs for password hashing</li>
+      <li>UUID for generating unique identifiers</li>
+    </ul>
+
+    <h3>Project Structure</h3>
+    <pre>
+├── config/           # Configuration files
+├── controllers/      # Route controllers
+├── middlewares/     # Express middlewares
+├── mocks/           # Mock data (temporary)
+├── public/          # Static files
+├── routes/          # API routes
+└── server.js        # Application entry point</pre>
+
+    <h3>Security Features</h3>
+    <ul>
+      <li>JWT-based authentication</li>
+      <li>Password hashing with bcrypt</li>
+      <li>CORS protection</li>
+      <li>Operator validation middleware</li>
+      <li>Error handling middleware</li>
+    </ul>
+  </div>
+</body>
+</html>
