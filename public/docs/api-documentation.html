@@ -1,0 +1,1959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Documentation</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 100%;
+      margin: 0;
+      padding: 20px;
+    }
+    
+    h1, h2, h3, h4 {
+      color: #002060;
+      margin-top: 1.5em;
+      margin-bottom: 0.5em;
+    }
+    
+    h1 {
+      font-size: 2.5em;
+      border-bottom: 2px solid #002060;
+      padding-bottom: 0.2em;
+    }
+    
+    h2 {
+      font-size: 1.8em;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 0.2em;
+    }
+    
+    h3 {
+      font-size: 1.5em;
+      margin-top: 1.2em;
+    }
+    
+    h4 {
+      font-size: 1.2em;
+      margin-top: 1em;
+    }
+    
+    p {
+      margin: 1em 0;
+    }
+    
+    pre {
+      background-color: #f5f5f5;
+      padding: 1em;
+      border-radius: 5px;
+      overflow-x: auto;
+      border: 1px solid #ddd;
+    }
+    
+    code {
+      font-family: 'Courier New', Courier, monospace;
+      background-color: #f5f5f5;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+      font-size: 0.9em;
+    }
+    
+    pre code {
+      background-color: transparent;
+      padding: 0;
+      border-radius: 0;
+      font-size: 0.9em;
+    }
+    
+    ul, ol {
+      margin: 1em 0;
+      padding-left: 2em;
+    }
+    
+    li {
+      margin: 0.5em 0;
+    }
+    
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1em 0;
+    }
+    
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.5em;
+      text-align: left;
+    }
+    
+    th {
+      background-color: #f5f5f5;
+    }
+    
+    .method {
+      display: inline-block;
+      padding: 0.2em 0.5em;
+      border-radius: 3px;
+      color: white;
+      font-weight: bold;
+      margin-right: 0.5em;
+    }
+    
+    .get {
+      background-color: #61affe;
+    }
+    
+    .post {
+      background-color: #49cc90;
+    }
+    
+    .put {
+      background-color: #fca130;
+    }
+    
+    .delete {
+      background-color: #f93e3e;
+    }
+    
+    .endpoint {
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: bold;
+    }
+    
+    .status {
+      display: inline-block;
+      padding: 0.2em 0.5em;
+      border-radius: 3px;
+      margin-right: 0.5em;
+    }
+    
+    .status-200 {
+      background-color: #49cc90;
+      color: white;
+    }
+    
+    .status-201 {
+      background-color: #49cc90;
+      color: white;
+    }
+    
+    .status-400 {
+      background-color: #fca130;
+      color: white;
+    }
+    
+    .status-401 {
+      background-color: #f93e3e;
+      color: white;
+    }
+    
+    .status-404 {
+      background-color: #f93e3e;
+      color: white;
+    }
+    
+    .status-429 {
+      background-color: #f93e3e;
+      color: white;
+    }
+    
+    .required {
+      color: #f93e3e;
+      font-weight: bold;
+    }
+    
+    .optional {
+      color: #999;
+    }
+    
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #1f2937;
+        color: #e5e7eb;
+      }
+      
+      h1, h2, h3, h4 {
+        color: #60a5fa;
+      }
+      
+      h1 {
+        border-bottom-color: #60a5fa;
+      }
+      
+      h2 {
+        border-bottom-color: #374151;
+      }
+      
+      pre, code {
+        background-color: #111827;
+      }
+      
+      pre {
+        border-color: #374151;
+      }
+      
+      th, td {
+        border-color: #374151;
+      }
+      
+      th {
+        background-color: #111827;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>API Documentation React Local 2</h1>
+  
+  <p>This document provides a comprehensive overview of all API endpoints used by the Vestiva Investment Platform frontend application. These endpoints are currently mocked in the frontend but should be implemented in an Express server to provide real functionality.</p>
+  
+  <h2>Base URL</h2>
+  
+  <p>All API endpoints are relative to the base URL:</p>
+  
+  <pre><code>https://api.vestiva.com</code></pre>
+  
+  <h2>Authentication</h2>
+  
+  <p>Most endpoints require authentication using a JWT token. The token should be included in the <code>Authorization</code> header:</p>
+  
+  <pre><code>Authorization: Bearer &lt;token&gt;</code></pre>
+  
+  <h3>Authentication Endpoints</h3>
+  
+  <h4><span class="method post">POST</span><span class="endpoint">/auth/login</span></h4>
+  
+  <p>Authenticates a user and returns a JWT token.</p>
+  
+  <h5>Request Body</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>email</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>User's email address</td>
+      </tr>
+      <tr>
+        <td>password</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>User's password</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Example Request</h5>
+  <pre><code>{
+  "email": "user@example.com",
+  "password": "password123"
+}</code></pre>
+  
+  <h5>Example Response</h5>
+  <pre><code>{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "user": {
+    "id": "1",
+    "email": "user@example.com",
+    "name": "User Name"
+  }
+}</code></pre>
+  
+  <h5>Status Codes</h5>
+  <ul>
+    <li><span class="status status-200">200</span> Success</li>
+    <li><span class="status status-401">401</span> Invalid credentials</li>
+  </ul>
+  
+  <h4><span class="method post">POST</span><span class="endpoint">/auth/logout</span></h4>
+  
+  <p>Invalidates the current JWT token.</p>
+  
+  <h5>Example Response</h5>
+  <pre><code>{
+  "success": true
+}</code></pre>
+  
+  <h5>Status Codes</h5>
+  <ul>
+    <li><span class="status status-200">200</span> Success</li>
+    <li><span class="status status-401">401</span> Unauthorized</li>
+  </ul>
+  
+  <h4><span class="method get">GET</span><span class="endpoint">/auth/me</span></h4>
+  
+  <p>Returns the currently authenticated user.</p>
+  
+  <h5>Example Response</h5>
+  <pre><code>{
+  "id": "1",
+  "email": "user@example.com",
+  "name": "User Name"
+}</code></pre>
+  
+  <h5>Status Codes</h5>
+  <ul>
+    <li><span class="status status-200">200</span> Success</li>
+    <li><span class="status status-401">401</span> Unauthorized</li>
+  </ul>
+  
+  <h4><span class="method post">POST</span><span class="endpoint">/auth/reset-password/request</span></h4>
+  
+  <p>Sends a password reset email to the user.</p>
+  
+  <h5>Request Body</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>email</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>User's email address</td>
+      </tr>
+      <tr>
+        <td>recaptchaToken</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>reCAPTCHA verification token</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Example Request</h5>
+  <pre><code>{
+  "email": "user@example.com",
+  "recaptchaToken": "recaptcha-token"
+}</code></pre>
+  
+  <h5>Example Response</h5>
+  <pre><code>{
+  "success": true
+}</code></pre>
+  
+  <h5>Status Codes</h5>
+  <ul>
+    <li><span class="status status-200">200</span> Success</li>
+    <li><span class="status status-400">400</span> Invalid request</li>
+  </ul>
+  
+  <h4><span class="method get">GET</span><span class="endpoint">/auth/reset-password/validate/:token</span></h4>
+  
+  <p>Validates a password reset token.</p>
+  
+  <h5>URL Parameters</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>token</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Password reset token</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Example Response</h5>
+  <pre><code>{
+  "valid": true
+}</code></pre>
+  
+  <h5>Status Codes</h5>
+  <ul>
+    <li><span class="status status-200">200</span> Success</li>
+  </ul>
+  
+  <h4><span class="method post">POST</span><span class="endpoint">/auth/reset-password/reset</span></h4>
+  
+  <p>Resets a user's password using a valid token.</p>
+  
+  <h5>Request Body</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>token</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Password reset token</td>
+      </tr>
+      <tr>
+        <td>password</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>New password (min 12 chars, must include uppercase, lowercase, number, special char)</td>
+      </tr>
+      <tr>
+        <td>confirmPassword</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Confirmation of new password (must match password)</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Example Request</h5>
+  <pre><code>{
+  "token": "reset-token",
+  "password": "newPassword123!",
+  "confirmPassword": "newPassword123!"
+}</code></pre>
+  
+  <h5>Example Response</h5>
+  <pre><code>{
+  "success": true
+}</code></pre>
+  
+  <h5>Status Codes</h5>
+  <ul>
+    <li><span class="status status-200">200</span> Success</li>
+    <li><span class="status status-400">400</span> Invalid request (password requirements not met or passwords don't match)</li>
+    <li><span class="status status-401">401</span> Invalid token</li>
+  </ul>
+  
+  <h2>Accounts</h2>
+  
+  <h4><span class="method get">GET</span><span class="endpoint">/accounts</span></h4>
+  
+  <p>Returns all accounts for the authenticated user.</p>
+  
+  <h5>Example Response</h5>
+  <pre><code>[
+  {
+    "id": "U13186484",
+    "alias": "Joaco",
+    "type": "AUTOMATED_INVESTMENT",
+    "value": 14692.92,
+    "percentage": 35,
+    "funded": true,
+    "performance": {
+      "total": -115.21,
+      "percentage": -0.79,
+      "period": "1Y"
+    }
+  },
+  {
+    "id": "U10246500",
+    "alias": "Market Hub",
+    "type": "MARKET_HUB",
+    "value": 5297.48,
+    "buyingPower": 225.46,
+    "percentage": 15,
+    "funded": true,
+    "performance": {
+      "total": 317.23,
+      "percentage": 6.37,
+      "period": "1Y"
+    }
+  }
+]</code></pre>
+  
+  <h5>Status Codes</h5>
+  <ul>
+    <li><span class="status status-200">200</span> Success</li>
+    <li><span class="status status-401">401</span> Unauthorized</li>
+  </ul>
+  
+  <h4><span class="method get">GET</span><span class="endpoint">/accounts/:id</span></h4>
+  
+  <p>Returns a specific account by ID.</p>
+  
+  <h5>URL Parameters</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Account ID</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Example Response</h5>
+  <pre><code>{
+  "id": "U13186484",
+  "alias": "Joaco",
+  "type": "AUTOMATED_INVESTMENT",
+  "value": 14692.92,
+  "percentage": 35,
+  "funded": true,
+  "performance": {
+    "total": -115.21,
+    "percentage": -0.79,
+    "period": "1Y"
+  }
+}</code></pre>
+  
+  <h5>Status Codes</h5>
+  <ul>
+    <li><span class="status status-200">200</span> Success</li>
+    <li><span class="status status-401">401</span> Unauthorized</li>
+    <li><span class="status status-404">404</span> Account not found</li>
+  </ul>
+  
+  <h4><span class="method get">GET</span><span class="endpoint">/accounts/:id/instruments</span></h4>
+  
+  <p>Returns the instruments (holdings) for a specific account.</p>
+  
+  <h5>URL Parameters</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Account ID</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Example Response</h5>
+  <pre><code>[
+  {
+    "symbol": "CSPX",
+    "name": "Acciones EEUU S&P500",
+    "value": 10129.14,
+    "quantity": 49,
+    "performance": -237.88,
+    "percentage": 69.56,
+    "color": "#3B9AE1"
+  },
+  {
+    "symbol": "EIMI",
+    "name": "Acciones Merc. Emerg.",
+    "value": 1663.55,
+    "quantity": 95,
+    "performance": -4.23,
+    "percentage": 11.42,
+    "color": "#0066CC"
+  }
+]</code></pre>
+  
+  <h5>Status Codes</h5>
+  <ul>
+    <li><span class="status status-200">200</span> Success</li>
+    <li><span class="status status-401">401</span> Unauthorized</li>
+    <li><span class="status status-404">404</span> Account not found</li>
+  </ul>
+  
+  <h4><span class="method get">GET</span><span class="endpoint">/accounts/:id/performance</span></h4>
+  
+  <p>Returns performance data for a specific account.</p>
+  
+  <h5>URL Parameters</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Account ID</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Query Parameters</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>period</td>
+        <td>string</td>
+        <td><span class="optional">Optional</span></td>
+        <td>Time period for performance data (e.g., "1M", "6M", "1Y", "inception")</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Example Response</h5>
+  <pre><code>{
+  "period": "1Y",
+  "data": [
+    {
+      "date": "2024-05",
+      "value": 1.25,
+      "percentage": 1.25
+    },
+    {
+      "date": "2024-06",
+      "value": 2.31,
+      "percentage": 2.31
+    }
+  ]
+}</code></pre>
+  
+  <h5>Status Codes</h5>
+  <ul>
+    <li><span class="status status-200">200</span> Success</li>
+    <li><span class="status status-401">401</span> Unauthorized</li>
+    <li><span class="status status-404">404</span> Account not found</li>
+  </ul>
+  
+  <h4><span class="method get">GET</span><span class="endpoint">/accounts/:id/performance/stats</span></h4>
+  
+  <p>Returns summary performance statistics for a specific account.</p>
+  
+  <h5>URL Parameters</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Account ID</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Example Response</h5>
+  <pre><code>{
+  "netGains": -307.08,
+  "totalReturn": -2.06,
+  "lastUpdate": "2025-04-11T00:00:00Z"
+}</code></pre>
+  
+  <h5>Status Codes</h5>
+  <ul>
+    <li><span class="status status-200">200</span> Success</li>
+    <li><span class="status status-401">401</span> Unauthorized</li>
+    <li><span class="status status-404">404</span> Account not found</li>
+  </ul>
+  
+  <h4><span class="method get">GET</span><span class="endpoint">/accounts/:id/performance/monthly</span></h4>
+  
+  <p>Returns monthly returns for a specific account.</p>
+  
+  <h5>URL Parameters</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Account ID</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Example Response</h5>
+  <pre><code>[
+  {
+    "month": "ABR 2025",
+    "value": -5.36
+  },
+  {
+    "month": "MAR 2025",
+    "value": -4.03
+  }
+]</code></pre>
+  
+  <h5>Status Codes</h5>
+  <ul>
+    <li><span class="status status-200">200</span> Success</li>
+    <li><span class="status status-401">401</span> Unauthorized</li>
+    <li><span class="status status-404">404</span> Account not found</li>
+  </ul>
+  
+  <h4><span class="method get">GET</span><span class="endpoint">/accounts/:id/portfolio</span></h4>
+  
+  <p>Returns the portfolio for a specific account.</p>
+  
+  <h5>URL Parameters</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Account ID</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Example Response</h5>
+  <pre><code>{
+  "id": "portfolio-U13186484",
+  "name": "Renta Variable",
+  "type": "AUTOMATED_INVESTMENT",
+  "allocation": [
+    {
+      "symbol": "CSPX",
+      "name": "US Stocks",
+      "percentage": 70.90,
+      "color": "#3B9AE1"
+    },
+    {
+      "symbol": "EIMI",
+      "name": "Emerging Markets",
+      "percentage": 10.70,
+      "color": "#0066CC"
+    }
+  ]
+}</code></pre>
+  
+  <h5>Status Codes</h5>
+  <ul>
+    <li><span class="status status-200">200</span> Success</li>
+    <li><span class="status status-401">401</span> Unauthorized</li>
+    <li><span class="status status-404">404</span> Account not found</li>
+  </ul>
+  
+  <h4><span class="method put">PUT</span><span class="endpoint">/accounts/:id/portfolio</span></h4>
+  
+  <p>Updates the portfolio for a specific account.</p>
+  
+  <h5>URL Parameters</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Account ID</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Request Body</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>portfolioId</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>ID of the portfolio to switch to</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Example Request</h5>
+  <pre><code>{
+  "portfolioId": "blackrock-renta-variable"
+}</code></pre>
+  
+  <h5>Example Response</h5>
+  <pre><code>{
+  "id": "blackrock-renta-variable",
+  "accountId": "U13186484",
+  "status": "pending"
+}</code></pre>
+  
+  <h5>Status Codes</h5>
+  <ul>
+    <li><span class="status status-200">200</span> Success</li>
+    <li><span class="status status-401">401</span> Unauthorized</li>
+    <li><span class="status status-404">404</span> Account not found</li>
+  </ul>
+  
+  <h4><span class="method get">GET</span><span class="endpoint">/accounts/:id/portfolio-changes</span></h4>
+  
+  <p>Returns the portfolio change history for a specific account.</p>
+  
+  <h5>URL Parameters</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Account ID</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Example Response</h5>
+  <pre><code>[
+  {
+    "id": "PC003",
+    "fromPortfolio": {
+      "id": "blackrock-renta-variable",
+      "name": "Renta Variable",
+      "type": "RENTA VARIABLE",
+      "stocksPercentage": 100,
+      "bondsPercentage": 0,
+      "allocation": [...]
+    },
+    "toPortfolio": {
+      "id": "bcp-growth",
+      "name": "Crecimiento",
+      "type": "RENTA VARIABLE",
+      "stocksPercentage": 100,
+      "bondsPercentage": 0,
+      "allocation": [...]
+    },
+    "requestDate": "2024-04-15",
+    "status": "in_progress",
+    "effectiveDate": "2024-04-22"
+  }
+]</code></pre>
+  
+  <h5>Status Codes</h5>
+  <ul>
+    <li><span class="status status-200">200</span> Success</li>
+    <li><span class="status status-401">401</span> Unauthorized</li>
+    <li><span class="status status-404">404</span> Account not found</li>
+  </ul>
+  
+  <h4><span class="method post">POST</span><span class="endpoint">/accounts/:id/portfolio-changes/:changeId/cancel</span></h4>
+  
+  <p>Cancels a pending portfolio change.</p>
+  
+  <h5>URL Parameters</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Account ID</td>
+      </tr>
+      <tr>
+        <td>changeId</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Portfolio change ID</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Example Response</h5>
+  <pre><code>{
+  "id": "PC003",
+  "status": "cancelled"
+}</code></pre>
+  
+  <h5>Status Codes</h5>
+  <ul>
+    <li><span class="status status-200">200</span> Success</li>
+    <li><span class="status status-401">401</span> Unauthorized</li>
+    <li><span class="status status-404">404</span> Account or change not found</li>
+  </ul>
+  
+  <h2>Transactions</h2>
+  
+  <h4><span class="method get">GET</span><span class="endpoint">/accounts/:id/transactions</span></h4>
+  
+  <p>Returns transactions for a specific account.</p>
+  
+  <h5>URL Parameters</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Account ID</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Query Parameters</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>startDate</td>
+        <td>string</td>
+        <td><span class="optional">Optional</span></td>
+        <td>Filter by start date (YYYY-MM-DD)</td>
+      </tr>
+      <tr>
+        <td>endDate</td>
+        <td>string</td>
+        <td><span class="optional">Optional</span></td>
+        <td>Filter by end date (YYYY-MM-DD)</td>
+      </tr>
+      <tr>
+        <td>type</td>
+        <td>string</td>
+        <td><span class="optional">Optional</span></td>
+        <td>Filter by transaction type (e.g., "RETIRO", "DEPÓSITO")</td>
+      </tr>
+      <tr>
+        <td>status</td>
+        <td>string</td>
+        <td><span class="optional">Optional</span></td>
+        <td>Filter by status (e.g., "Completado", "Cancelado")</td>
+      </tr>
+      <tr>
+        <td>page</td>
+        <td>number</td>
+        <td><span class="optional">Optional</span></td>
+        <td>Page number for pagination</td>
+      </tr>
+      <tr>
+        <td>limit</td>
+        <td>number</td>
+        <td><span class="optional">Optional</span></td>
+        <td>Number of items per page</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Example Response</h5>
+  <pre><code>{
+  "transactions": [
+    {
+      "id": "T001",
+      "date": "2024-11-06",
+      "type": "RETIRO",
+      "accountId": "U13186484",
+      "alias": "Joaco",
+      "amount": -10.00,
+      "status": "Cancelado",
+      "reason": "Necesidad de liquidez",
+      "comment": "Test"
+    }
+  ],
+  "total": 10,
+  "page": 1,
+  "limit": 10
+}</code></pre>
+  
+  <h5>Status Codes</h5>
+  <ul>
+    <li><span class="status status-200">200</span> Success</li>
+    <li><span class="status status-401">401</span> Unauthorized</li>
+    <li><span class="status status-404">404</span> Account not found</li>
+  </ul>
+  
+  <h4><span class="method get">GET</span><span class="endpoint">/accounts/:id/transactions/:transactionId</span></h4>
+  
+  <p>Returns a specific transaction.</p>
+  
+  <h5>URL Parameters</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Account ID</td>
+      </tr>
+      <tr>
+        <td>transactionId</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Transaction ID</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Example Response</h5>
+  <pre><code>{
+  "id": "T001",
+  "date": "2024-11-06",
+  "type": "RETIRO",
+  "accountId": "U13186484",
+  "alias": "Joaco",
+  "amount": -10.00,
+  "status": "Cancelado",
+  "reason": "Necesidad de liquidez",
+  "comment": "Test"
+}</code></pre>
+  
+  <h5>Status Codes</h5>
+  <ul>
+    <li><span class="status status-200">200</span> Success</li>
+    <li><span class="status status-401">401</span> Unauthorized</li>
+    <li><span class="status status-404">404</span> Transaction not found</li>
+  </ul>
+  
+  <h4><span class="method post">POST</span><span class="endpoint">/accounts/:id/withdrawals</span></h4>
+  
+  <p>Creates a new withdrawal request.</p>
+  
+  <h5>URL Parameters</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Account ID</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Request Body</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>withdrawalAccountId</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>ID of the withdrawal account</td>
+      </tr>
+      <tr>
+        <td>amount</td>
+        <td>number</td>
+        <td><span class="required">Required</span></td>
+        <td>Amount to withdraw</td>
+      </tr>
+      <tr>
+        <td>reason</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Reason for withdrawal</td>
+      </tr>
+      <tr>
+        <td>comment</td>
+        <td>string</td>
+        <td><span class="optional">Optional</span></td>
+        <td>Additional comment</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Example Request</h5>
+  <pre><code>{
+  "withdrawalAccountId": "WA001",
+  "amount": 500,
+  "reason": "Necesidad de liquidez",
+  "comment": "Retiro parcial"
+}</code></pre>
+  
+  <h5>Example Response</h5>
+  <pre><code>{
+  "id": "T003",
+  "date": "2025-04-17",
+  "type": "RETIRO",
+  "accountId": "U13186484",
+  "alias": "Joaco",
+  "amount": -500.00,
+  "status": "Pendiente",
+  "reason": "Necesidad de liquidez",
+  "comment": "Retiro parcial"
+}</code></pre>
+  
+  <h5>Status Codes</h5>
+  <ul>
+    <li><span class="status status-201">201</span> Created</li>
+    <li><span class="status status-400">400</span> Invalid request</li>
+    <li><span class="status status-401">401</span> Unauthorized</li>
+    <li><span class="status status-404">404</span> Account not found</li>
+  </ul>
+  
+  <h2>Withdrawal Accounts</h2>
+  
+  <h4><span class="method get">GET</span><span class="endpoint">/accounts/:id/withdrawal-accounts</span></h4>
+  
+  <p>Returns withdrawal accounts for a specific investment account.</p>
+  
+  <h5>URL Parameters</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Account ID</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Example Response</h5>
+  <pre><code>[
+  {
+    "id": "WA001",
+    "alias": "BANK OF AMERICA, N...1213",
+    "type": "bank",
+    "accountNumber": "****1213",
+    "status": "active",
+    "country": "US",
+    "currency": "USD",
+    "routingNumber": "026009593"
+  }
+]</code></pre>
+  
+  <h5>Status Codes</h5>
+  <ul>
+    <li><span class="status status-200">200</span> Success</li>
+    <li><span class="status status-401">401</span> Unauthorized</li>
+    <li><span class="status status-404">404</span> Account not found</li>
+  </ul>
+  
+  <h4><span class="method post">POST</span><span class="endpoint">/accounts/:id/withdrawal-accounts</span></h4>
+  
+  <p>Adds a new withdrawal account.</p>
+  
+  <h5>URL Parameters</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Account ID</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Request Body (multipart/form-data)</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>alias</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Display name for the account</td>
+      </tr>
+      <tr>
+        <td>type</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Account type ("bank" or "financial")</td>
+      </tr>
+      <tr>
+        <td>accountNumber</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Account number</td>
+      </tr>
+      <tr>
+        <td>country</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Country code (e.g., "US", "MX")</td>
+      </tr>
+      <tr>
+        <td>currency</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Currency code (e.g., "USD", "MXN")</td>
+      </tr>
+      <tr>
+        <td>routingNumber</td>
+        <td>string</td>
+        <td><span class="optional">Optional</span></td>
+        <td>Routing number or SWIFT/BIC code</td>
+      </tr>
+      <tr>
+        <td>documents</td>
+        <td>file[]</td>
+        <td><span class="required">Required</span></td>
+        <td>Supporting documents (PDF, JPG, PNG)</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Example Request</h5>
+  <pre><code>// multipart/form-data
+alias: "My Bank Account"
+type: "bank"
+accountNumber: "123456789"
+country: "US"
+currency: "USD"
+routingNumber: "021000021"
+documents: [File1, File2]</code></pre>
+  
+  <h5>Example Response</h5>
+  <pre><code>{
+  "id": "WA009",
+  "alias": "My Bank Account",
+  "type": "bank",
+  "accountNumber": "****6789",
+  "status": "pending_review",
+  "country": "US",
+  "currency": "USD",
+  "routingNumber": "021000021"
+}</code></pre>
+  
+  <h5>Status Codes</h5>
+  <ul>
+    <li><span class="status status-201">201</span> Created</li>
+    <li><span class="status status-400">400</span> Invalid request</li>
+    <li><span class="status status-401">401</span> Unauthorized</li>
+    <li><span class="status status-404">404</span> Account not found</li>
+  </ul>
+  
+  <h4><span class="method delete">DELETE</span><span class="endpoint">/accounts/:id/withdrawal-accounts/:withdrawalAccountId</span></h4>
+  
+  <p>Deletes a withdrawal account.</p>
+  
+  <h5>URL Parameters</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Account ID</td>
+      </tr>
+      <tr>
+        <td>withdrawalAccountId</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Withdrawal account ID</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Example Response</h5>
+  <pre><code>{
+  "success": true
+}</code></pre>
+  
+  <h5>Status Codes</h5>
+  <ul>
+    <li><span class="status status-200">200</span> Success</li>
+    <li><span class="status status-401">401</span> Unauthorized</li>
+    <li><span class="status status-404">404</span> Account or withdrawal account not found</li>
+  </ul>
+  
+  <h2>Statements</h2>
+  
+  <h4><span class="method get">GET</span><span class="endpoint">/accounts/:id/statements</span></h4>
+  
+  <p>Returns statements for a specific account.</p>
+  
+  <h5>URL Parameters</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Account ID</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Query Parameters</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>type</td>
+        <td>string</td>
+        <td><span class="optional">Optional</span></td>
+        <td>Filter by statement type (e.g., "monthly", "annual")</td>
+      </tr>
+      <tr>
+        <td>year</td>
+        <td>string</td>
+        <td><span class="optional">Optional</span></td>
+        <td>Filter by year</td>
+      </tr>
+      <tr>
+        <td>page</td>
+        <td>number</td>
+        <td><span class="optional">Optional</span></td>
+        <td>Page number for pagination</td>
+      </tr>
+      <tr>
+        <td>limit</td>
+        <td>number</td>
+        <td><span class="optional">Optional</span></td>
+        <td>Number of items per page</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Example Response</h5>
+  <pre><code>{
+  "statements": [
+    {
+      "id": "S001",
+      "type": "monthly",
+      "date": "2025-03-01",
+      "year": "2025",
+      "month": "MAR",
+      "accountId": "U13186484",
+      "url": "https://example.com/statements/202503.pdf"
+    }
+  ],
+  "total": 10,
+  "page": 1,
+  "limit": 10
+}</code></pre>
+  
+  <h5>Status Codes</h5>
+  <ul>
+    <li><span class="status status-200">200</span> Success</li>
+    <li><span class="status status-401">401</span> Unauthorized</li>
+    <li><span class="status status-404">404</span> Account not found</li>
+  </ul>
+  
+  <h4><span class="method get">GET</span><span class="endpoint">/accounts/:id/tax-documents</span></h4>
+  
+  <p>Returns tax documents for a specific account.</p>
+  
+  <h5>URL Parameters</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Account ID</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Query Parameters</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>year</td>
+        <td>string</td>
+        <td><span class="optional">Optional</span></td>
+        <td>Filter by year</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Example Response</h5>
+  <pre><code>[
+  {
+    "id": "T001",
+    "type": "tax",
+    "date": "2024-12-31",
+    "year": "2024",
+    "accountId": "U13186484",
+    "documentId": "F1042S",
+    "url": "https://example.com/tax/2024/F1042S.pdf"
+  }
+]</code></pre>
+  
+  <h5>Status Codes</h5>
+  <ul>
+    <li><span class="status status-200">200</span> Success</li>
+    <li><span class="status status-401">401</span> Unauthorized</li>
+    <li><span class="status status-404">404</span> Account not found</li>
+  </ul>
+  
+  <h4><span class="method get">GET</span><span class="endpoint">/statements/:id/download</span></h4>
+  
+  <p>Downloads a specific statement.</p>
+  
+  <h5>URL Parameters</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Statement ID</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Response</h5>
+  <p>Binary PDF file with appropriate headers:</p>
+  <pre><code>Content-Type: application/pdf
+Content-Disposition: attachment; filename="statement.pdf"</code></pre>
+  
+  <h5>Status Codes</h5>
+  <ul>
+    <li><span class="status status-200">200</span> Success</li>
+    <li><span class="status status-401">401</span> Unauthorized</li>
+    <li><span class="status status-404">404</span> Statement not found</li>
+  </ul>
+  
+  <h2>Account Settings</h2>
+  
+  <h4><span class="method get">GET</span><span class="endpoint">/accounts/:id/settings</span></h4>
+  
+  <p>Returns settings for a specific account.</p>
+  
+  <h5>URL Parameters</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Account ID</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Example Response</h5>
+  <pre><code>{
+  "id": "U13186484",
+  "alias": "Joaco",
+  "type": "AUTOMATED_INVESTMENT",
+  "accountType": "Individual",
+  "holders": ["John Doe"],
+  "documents": [
+    {
+      "id": "D001",
+      "name": "Terms and Conditions",
+      "date": "2024-01-15",
+      "url": "https://example.com/documents/terms.pdf"
+    }
+  ],
+  "support": {
+    "email": "support@vestiva.com",
+    "phone": "+1 (800) 555-0123"
+  }
+}</code></pre>
+  
+  <h5>Status Codes</h5>
+  <ul>
+    <li><span class="status status-200">200</span> Success</li>
+    <li><span class="status status-401">401</span> Unauthorized</li>
+    <li><span class="status status-404">404</span> Account not found</li>
+  </ul>
+  
+  <h4><span class="method put">PUT</span><span class="endpoint">/accounts/:id/alias</span></h4>
+  
+  <p>Updates the alias for a specific account.</p>
+  
+  <h5>URL Parameters</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Account ID</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Request Body</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>alias</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>New alias for the account</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Example Request</h5>
+  <pre><code>{
+  "alias": "New Alias"
+}</code></pre>
+  
+  <h5>Example Response</h5>
+  <pre><code>{
+  "id": "U13186484",
+  "alias": "New Alias",
+  "type": "AUTOMATED_INVESTMENT",
+  "accountType": "Individual",
+  "holders": ["John Doe"],
+  "documents": [...],
+  "support": {...}
+}</code></pre>
+  
+  <h5>Status Codes</h5>
+  <ul>
+    <li><span class="status status-200">200</span> Success</li>
+    <li><span class="status status-401">401</span> Unauthorized</li>
+    <li><span class="status status-404">404</span> Account not found</li>
+  </ul>
+  
+  <h4><span class="method get">GET</span><span class="endpoint">/accounts/:id/documents/:documentId/download</span></h4>
+  
+  <p>Downloads a specific document.</p>
+  
+  <h5>URL Parameters</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Account ID</td>
+      </tr>
+      <tr>
+        <td>documentId</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Document ID</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Response</h5>
+  <p>Binary PDF file with appropriate headers:</p>
+  <pre><code>Content-Type: application/pdf
+Content-Disposition: attachment; filename="document.pdf"</code></pre>
+  
+  <h5>Status Codes</h5>
+  <ul>
+    <li><span class="status status-200">200</span> Success</li>
+    <li><span class="status status-401">401</span> Unauthorized</li>
+    <li><span class="status status-404">404</span> Document not found</li>
+  </ul>
+  
+  <h2>Widget API</h2>
+  
+  <h4><span class="method post">POST</span><span class="endpoint">/widgets/validate</span></h4>
+  
+  <p>Validates a widget token.</p>
+  
+  <h5>Request Body</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>token</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Widget token to validate</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Example Request</h5>
+  <pre><code>{
+  "token": "widget-token"
+}</code></pre>
+  
+  <h5>Example Response</h5>
+  <pre><code>{
+  "valid": true,
+  "clientId": "client_123",
+  "permissions": ["read:accounts", "read:performance"]
+}</code></pre>
+  
+  <h5>Status Codes</h5>
+  <ul>
+    <li><span class="status status-200">200</span> Success</li>
+    <li><span class="status status-401">401</span> Invalid token</li>
+  </ul>
+  
+  <h4><span class="method post">POST</span><span class="endpoint">/widgets/token</span></h4>
+  
+  <p>Generates a new widget token.</p>
+  
+  <h5>Request Body</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>clientId</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Client ID</td>
+      </tr>
+      <tr>
+        <td>permissions</td>
+        <td>string[]</td>
+        <td><span class="optional">Optional</span></td>
+        <td>Array of permission strings</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Example Request</h5>
+  <pre><code>{
+  "clientId": "client_123",
+  "permissions": ["read:accounts", "read:performance"]
+}</code></pre>
+  
+  <h5>Example Response</h5>
+  <pre><code>{
+  "token": "widget-token"
+}</code></pre>
+  
+  <h5>Status Codes</h5>
+  <ul>
+    <li><span class="status status-200">200</span> Success</li>
+    <li><span class="status status-401">401</span> Unauthorized</li>
+  </ul>
+  
+  <h4><span class="method get">GET</span><span class="endpoint">/widgets/domains/:domain</span></h4>
+  
+  <p>Validates if a domain is authorized for widget usage.</p>
+  
+  <h5>URL Parameters</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>domain</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Domain to validate</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Query Parameters</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>clientId</td>
+        <td>string</td>
+        <td><span class="required">Required</span></td>
+        <td>Client ID</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h5>Example Response</h5>
+  <pre><code>{
+  "isValid": true
+}</code></pre>
+  
+  <h5>Status Codes</h5>
+  <ul>
+    <li><span class="status status-200">200</span> Success</li>
+    <li><span class="status status-401">401</span> Unauthorized</li>
+  </ul>
+  
+  <h2>Error Responses</h2>
+  
+  <p>All API endpoints return standardized error responses:</p>
+  
+  <pre><code>{
+  "error": "Error message",
+  "code": "ERROR_CODE",
+  "details": {} // Optional additional details
+}</code></pre>
+  
+  <p>Common error codes:</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>UNAUTHORIZED</td>
+        <td>Authentication required or invalid token</td>
+      </tr>
+      <tr>
+        <td>FORBIDDEN</td>
+        <td>Insufficient permissions</td>
+      </tr>
+      <tr>
+        <td>NOT_FOUND</td>
+        <td>Resource not found</td>
+      </tr>
+      <tr>
+        <td>VALIDATION_ERROR</td>
+        <td>Invalid request data</td>
+      </tr>
+      <tr>
+        <td>INTERNAL_ERROR</td>
+        <td>Server error</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h2>Rate Limiting</h2>
+  
+  <p>API requests are subject to rate limiting:</p>
+  <ul>
+    <li>100 requests per minute per IP address</li>
+    <li>10,000 requests per day per IP address</li>
+  </ul>
+  
+  <p>Rate limit headers are included in all responses:</p>
+  <pre><code>X-RateLimit-Limit: 100
+X-RateLimit-Remaining: 99
+X-RateLimit-Reset: 1619284800</code></pre>
+  
+  <p>When rate limits are exceeded, a 429 Too Many Requests response is returned:</p>
+  <pre><code>{
+  "error": "Rate limit exceeded",
+  "code": "RATE_LIMIT_EXCEEDED",
+  "details": {
+    "retryAfter": 60
+  }
+}</code></pre>
+</body>
+</html>
