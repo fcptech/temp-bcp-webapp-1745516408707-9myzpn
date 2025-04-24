@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vestiva Widget Test</title>
+    
+    <!-- Dependencies -->
+    <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/chart.js@4.4.1/dist/chart.umd.js"></script>
+    <script src="https://unpkg.com/i18next@23.7.16/dist/umd/i18next.min.js"></script>
+    <script src="https://unpkg.com/i18next-browser-languagedetector@7.2.0/dist/umd/i18nextBrowserLanguageDetector.min.js"></script>
+    <script src="https://unpkg.com/react-i18next@14.0.0/dist/umd/react-i18next.min.js"></script>
+    <script src="https://unpkg.com/react-router-dom@6.22.2/dist/umd/react-router-dom.production.min.js"></script>
+    <script src="https://unpkg.com/zod@3.22.4/lib/index.umd.js"></script>
+    <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        #widget-container {
+            margin-top: 20px;
+            min-height: 500px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Widget Test</h1>
+    <div id="widget-container"></div>
+
+    <!-- Widget Script -->
+    <script src="/widget/widget.js"></script>
+    <script>
+        // Initialize widget when dependencies are loaded
+        window.addEventListener('load', () => {
+            try {
+                const widget = new VestivaWidget({
+                    containerId: 'widget-container',
+                    theme: 'light',
+                    language: 'es',
+                    view: 'dashboard',
+                    mode: 'embedded'
+                });
+
+                console.log('Widget initialized:', widget);
+            } catch (error) {
+                console.error('Failed to initialize widget:', error);
+            }
+        });
+    </script>
+</body>
+</html>
