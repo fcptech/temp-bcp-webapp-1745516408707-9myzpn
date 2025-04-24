@@ -1,0 +1,36 @@
+@layer components {
+  /* Button styles */
+  .btn {
+    @apply px-4 py-2 rounded-md font-medium transition-colors;
+  }
+
+  .btn-primary {
+    @apply bg-theme-primary text-white hover:bg-theme-secondary;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-100 text-gray-600 hover:bg-gray-200 
+           dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600;
+  }
+
+  /* Card styles */
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-lg shadow;
+  }
+
+  .card-header {
+    @apply p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700;
+  }
+
+  /* Form styles */
+  .form-input {
+    @apply mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-700 
+           border border-gray-300 dark:border-gray-600 rounded-md shadow-sm 
+           focus:outline-none focus:ring-theme-accent focus:border-theme-accent 
+           dark:text-white;
+  }
+
+  .form-label {
+    @apply block text-sm font-medium text-gray-700 dark:text-gray-300;
+  }
+}
